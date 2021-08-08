@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class SneakPeekSlider extends StatelessWidget {
   const SneakPeekSlider({Key? key}) : super(key: key);
@@ -14,10 +15,11 @@ class SneakPeekSlider extends StatelessWidget {
             child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    'SneakPeek: Best Spot Place',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                  ),
+                  Text('SneakPeek: Best Spot Place',
+                      style: GoogleFonts.poppins(
+                        textStyle: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 17),
+                      )),
                 ]),
           ),
           Container(

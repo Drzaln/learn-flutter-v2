@@ -1,5 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class NextTripSlider extends StatelessWidget {
   const NextTripSlider({Key? key}) : super(key: key);
@@ -17,16 +19,18 @@ class NextTripSlider extends StatelessWidget {
                 children: [
                   Text(
                     'Your Next Trips',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                    style: GoogleFonts.poppins(textStyle: TextStyle(fontWeight: FontWeight.bold, fontSize: 17),)
                   ),
                   Row(children: [
                     Text('More',
-                        style:
-                            TextStyle(fontSize: 14, color: Color(0xFF498AC1))),
+                        style: GoogleFonts.poppins(
+                            textStyle: TextStyle(
+                                fontSize: 14, color: Color(0xFF498AC1)))),
+                    SizedBox(width: 8,),
                     Icon(
-                      Icons.arrow_right_rounded,
+                      CupertinoIcons.chevron_right,
                       color: Color(0xFF498AC1),
-                      size: 28,
+                      size: 16,
                     ),
                   ])
                 ]),
@@ -84,14 +88,14 @@ class BestPlaceItem extends StatelessWidget {
       width: 170,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8), color: Color(background)),
-      padding: EdgeInsets.fromLTRB(16, 16, 16, 9),
+      padding: EdgeInsets.fromLTRB(16, 16, 16, 5),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            height: 78,
+            height: 93,
             width: double.infinity,
-            margin: EdgeInsets.only(bottom: 8),
+            margin: EdgeInsets.only(bottom: 2),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(6),
               child: Image(
@@ -100,10 +104,13 @@ class BestPlaceItem extends StatelessWidget {
               ),
             ),
           ),
-          Text(
-            name,
-            style: TextStyle(
-                color: Colors.white, fontSize: 25, fontWeight: FontWeight.bold),
+          Container(
+            width: 110,
+            child: Text(
+              name,
+              style: GoogleFonts.poppins(textStyle: TextStyle(
+                  color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),)
+            ),
           ),
         ],
       ),

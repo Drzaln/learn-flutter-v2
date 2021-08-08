@@ -1,5 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class FriendSlider extends StatelessWidget {
   const FriendSlider({Key? key}) : super(key: key);
@@ -15,18 +17,23 @@ class FriendSlider extends StatelessWidget {
             child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    'Best Friends’ Night In',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                  ),
+                  Text('Best Friends’ Night In',
+                      style: GoogleFonts.poppins(
+                        textStyle: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 17),
+                      )),
                   Row(children: [
                     Text('More',
-                        style:
-                            TextStyle(fontSize: 14, color: Color(0xFF498AC1))),
+                        style: GoogleFonts.poppins(
+                            textStyle: TextStyle(
+                                fontSize: 14, color: Color(0xFF498AC1)))),
+                    SizedBox(
+                      width: 8,
+                    ),
                     Icon(
-                      Icons.arrow_right_rounded,
+                      CupertinoIcons.chevron_right,
                       color: Color(0xFF498AC1),
-                      size: 28,
+                      size: 16,
                     ),
                   ])
                 ]),
@@ -65,7 +72,8 @@ class FriendSlider extends StatelessWidget {
 }
 
 class BestPlaceItem extends StatelessWidget {
-  const BestPlaceItem({Key? key, required this.image, required this.name, required this.desc})
+  const BestPlaceItem(
+      {Key? key, required this.image, required this.name, required this.desc})
       : super(key: key);
   final String image;
   final String name;
@@ -106,17 +114,23 @@ class BestPlaceItem extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                name,
-                style: TextStyle(
-                    color: Colors.white, fontWeight: FontWeight.bold, fontSize: 17),
+              Text(name,
+                  style: GoogleFonts.poppins(
+                    textStyle: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 15),
+                  )),
+              SizedBox(
+                height: 2,
               ),
-              SizedBox(height: 4,),
-              Text(
-                desc,
-                style: TextStyle(
-                    color: Colors.white, fontWeight: FontWeight.w500, fontSize: 12),
-              ),
+              Text(desc,
+                  style: GoogleFonts.poppins(
+                    textStyle: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w500,
+                        fontSize: 11),
+                  )),
             ],
           ),
         ),
