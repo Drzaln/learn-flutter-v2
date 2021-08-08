@@ -1,14 +1,32 @@
 {
-  "posts": [
-    { "id": 1, "title": "Post 1" },
-    { "id": 2, "title": "Post 2" },
-    { "id": 3, "title": "Post 3" }
+  "inspirationPlace": [
+    { "id": 1, "title": "Bandung", "image": "https://d27k8xmh3cuzik.cloudfront.net/wp-content/uploads/2018/08/badung-cover-image1.jpg" },
+    { "id": 2, "title": "Lombok", "image": "http://static.asiawebdirect.com/m/bangkok/portals/indonesia-holidays-com/homepage/lombok-island/pagePropertiesImage/lombok.jpg" },
+    { "id": 3, "title": "Bali", "image": "https://jaunttips.com/wp-content/uploads/2020/04/AdobeStock_84849478-scaled.jpeg" }
   ],
-  "comments": [
-    { "id": 1, "body": "some comment", "postId": 1 },
-    { "id": 2, "body": "some comment", "postId": 1 }
+  "sneakPeek": [
+    "https://d27k8xmh3cuzik.cloudfront.net/wp-content/uploads/2018/08/badung-cover-image1.jpg",
+    "http://static.asiawebdirect.com/m/bangkok/portals/indonesia-holidays-com/homepage/lombok-island/pagePropertiesImage/lombok.jpg",
+    "https://jaunttips.com/wp-content/uploads/2020/04/AdobeStock_84849478-scaled.jpeg"
   ],
-  "profile": {
-    "name": "typicode"
-  }
+  "nightIn": [
+    {
+      "id": 1,
+      "title": "Jakarta",
+      "image": "https://www.telegraph.co.uk/content/dam/Travel/Destinations/Asia/Indonesia/Jakarta/Jakarta---36-hours---cityscape-xlarge.jpg",
+      "desc": "See Skyscraper"
+    },
+    {
+      "id": 2,
+      "title": "Puncak",
+      "image": "http://amazingtours.com.bd/wp-content/uploads/2017/05/indonesia-puncak.jpg",
+      "desc": "Chill on the Hill"
+    },
+    {
+      "id": 3,
+      "title": "Raja Ampat",
+      "image": "https://authentic-indonesia.com/wp-content/uploads/2019/05/fam-island-raja-ampat.jpg",
+      "desc": "Vitamin Sea"
+    }
+  ]
 }
