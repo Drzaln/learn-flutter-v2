@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import 'inspiration_slider_model.dart';
+
 class InspirationSlider extends StatelessWidget {
   const InspirationSlider({Key? key}) : super(key: key);
 
@@ -37,33 +39,51 @@ class InspirationSlider extends StatelessWidget {
                   ])
                 ]),
           ),
-          Container(
-            height: 180,
-            child: ListView(
+          Container(height: 180, child: ListItem())
+        ]));
+  }
+}
+
+class ListItem extends StatefulWidget {
+  const ListItem({Key? key}) : super(key: key);
+
+  @override
+  _ListItemState createState() => _ListItemState();
+}
+
+class _ListItemState extends State<ListItem> {
+  late Future<List<Inspiration>> inspirationData;
+
+  @override
+  void initState() {
+    super.initState();
+    inspirationData = fetchInspiration();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder<List<Inspiration>>(
+        future: inspirationData,
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            return ListView.builder(
               padding: EdgeInsets.only(left: 16, right: 16),
               shrinkWrap: true,
               scrollDirection: Axis.horizontal,
               physics: BouncingScrollPhysics(),
-              children: <Widget>[
-                BestPlaceItem(
-                  image:
-                      'https://d27k8xmh3cuzik.cloudfront.net/wp-content/uploads/2018/08/badung-cover-image1.jpg',
-                  name: 'Bandung',
-                ),
-                BestPlaceItem(
-                  image:
-                      'http://static.asiawebdirect.com/m/bangkok/portals/indonesia-holidays-com/homepage/lombok-island/pagePropertiesImage/lombok.jpg',
-                  name: 'Lombok',
-                ),
-                BestPlaceItem(
-                  image:
-                      'https://jaunttips.com/wp-content/uploads/2020/04/AdobeStock_84849478-scaled.jpeg',
-                  name: 'Bali',
-                ),
-              ],
-            ),
-          )
-        ]));
+              itemCount: snapshot.data!.length,
+              itemBuilder: (BuildContext context, int index) {
+                return BestPlaceItem(
+                  image: snapshot.data![index].image,
+                  name: snapshot.data![index].title,
+                );
+              },
+            );
+          }else if (snapshot.hasError) {
+            return Text('${snapshot.error}');
+          }
+          return const CircularProgressIndicator();
+        });
   }
 }
 
@@ -76,8 +96,9 @@ class BestPlaceItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (){
-        Navigator.pushNamed(context, '/detail', arguments: ScreenArguments(name, image));
+      onTap: () {
+        Navigator.pushNamed(context, '/detail',
+            arguments: ScreenArguments(name, image));
       },
       child: Column(
         children: [
@@ -107,7 +128,7 @@ class BestPlaceItem extends StatelessWidget {
   }
 }
 
-class ScreenArguments{
+class ScreenArguments {
   final String title;
   final String image;
 

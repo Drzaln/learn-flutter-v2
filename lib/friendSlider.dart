@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:my_app/friend_slider_model.dart';
 
 class FriendSlider extends StatelessWidget {
   const FriendSlider({Key? key}) : super(key: key);
@@ -38,36 +39,53 @@ class FriendSlider extends StatelessWidget {
                   ])
                 ]),
           ),
-          Container(
-            height: 150,
-            child: ListView(
-              padding: EdgeInsets.only(left: 16, right: 16),
-              shrinkWrap: true,
-              scrollDirection: Axis.horizontal,
-              physics: BouncingScrollPhysics(),
-              children: <Widget>[
-                BestPlaceItem(
-                  image:
-                      'https://www.telegraph.co.uk/content/dam/Travel/Destinations/Asia/Indonesia/Jakarta/Jakarta---36-hours---cityscape-xlarge.jpg',
-                  name: 'Jakarta',
-                  desc: 'See Skyscraper',
-                ),
-                BestPlaceItem(
-                  image:
-                      'http://amazingtours.com.bd/wp-content/uploads/2017/05/indonesia-puncak.jpg',
-                  name: 'Puncak',
-                  desc: 'Chill on the Hill',
-                ),
-                BestPlaceItem(
-                  image:
-                      'https://authentic-indonesia.com/wp-content/uploads/2019/05/fam-island-raja-ampat.jpg',
-                  name: 'Raja Ampat',
-                  desc: 'Vitamin Sea',
-                ),
-              ],
-            ),
-          )
+          Container(height: 150, child: ListItem())
         ]));
+  }
+}
+
+class ListItem extends StatefulWidget {
+  const ListItem({Key? key}) : super(key: key);
+
+  @override
+  _ListItemState createState() => _ListItemState();
+}
+
+class _ListItemState extends State<ListItem> {
+  late Future<List<Friend>> nightIn;
+
+  @override
+  void initState() {
+    super.initState();
+    nightIn = fetchFriend();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder<List<Friend>>(
+      future: nightIn,
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          return ListView.builder(
+            padding: EdgeInsets.only(left: 16, right: 16),
+            shrinkWrap: true,
+            scrollDirection: Axis.horizontal,
+            physics: BouncingScrollPhysics(),
+            itemCount: snapshot.data!.length,
+            itemBuilder: (BuildContext context, int index) {
+              return BestPlaceItem(
+                image: snapshot.data![index].image,
+                name: snapshot.data![index].title,
+                desc: snapshot.data![index].desc,
+              );
+            },
+          );
+        } else if (snapshot.hasError) {
+          return Text('${snapshot.error}');
+        }
+        return const CircularProgressIndicator();
+      },
+    );
   }
 }
 

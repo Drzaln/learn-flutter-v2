@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:my_app/sneak_peek_slider_model.dart';
 
 class SneakPeekSlider extends StatelessWidget {
   const SneakPeekSlider({Key? key}) : super(key: key);
@@ -22,33 +23,51 @@ class SneakPeekSlider extends StatelessWidget {
                       )),
                 ]),
           ),
-          Container(
-            height: 100,
-            child: ListView(
-              padding: EdgeInsets.only(left: 16, right: 16),
-              shrinkWrap: true,
-              scrollDirection: Axis.horizontal,
-              physics: BouncingScrollPhysics(),
-              children: <Widget>[
-                SneakPeekItem(
-                  image:
-                      'https://d27k8xmh3cuzik.cloudfront.net/wp-content/uploads/2018/08/badung-cover-image1.jpg',
-                ),
-                SneakPeekItem(
-                  image:
-                      'http://static.asiawebdirect.com/m/bangkok/portals/indonesia-holidays-com/homepage/lombok-island/pagePropertiesImage/lombok.jpg',
-                ),
-                SneakPeekItem(
-                  image:
-                      'https://jaunttips.com/wp-content/uploads/2020/04/AdobeStock_84849478-scaled.jpeg',
-                ),
-                SneakPeekItem(
-                    image:
-                        'https://img.jakpost.net/c/2017/08/02/2017_08_02_30495_1501654303._large.jpg')
-              ],
-            ),
-          )
+          Container(height: 100, child: ListItem())
         ]));
+  }
+}
+
+class ListItem extends StatefulWidget {
+  const ListItem({Key? key}) : super(key: key);
+
+  @override
+  _ListItemState createState() => _ListItemState();
+}
+
+class _ListItemState extends State<ListItem> {
+  late Future<List<SneakPeek>> sneakData;
+
+  @override
+  void initState() {
+    super.initState();
+    sneakData = fetchSneakPeek();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder<List<SneakPeek>>(
+      future: sneakData,
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          return ListView.builder(
+            padding: EdgeInsets.only(left: 16, right: 16),
+            shrinkWrap: true,
+            scrollDirection: Axis.horizontal,
+            physics: BouncingScrollPhysics(),
+            itemCount: snapshot.data!.length,
+            itemBuilder: (BuildContext context, int index) {
+              return SneakPeekItem(
+                image: snapshot.data![index].image,
+              );
+            },
+          );
+        } else if (snapshot.hasError) {
+          return Text('${snapshot.error}');
+        }
+        return const CircularProgressIndicator();
+      },
+    );
   }
 }
 
