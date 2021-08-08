@@ -5,10 +5,16 @@
     { "id": 3, "title": "Bali", "image": "https://jaunttips.com/wp-content/uploads/2020/04/AdobeStock_84849478-scaled.jpeg" }
   ],
   "sneakPeek": [
-    "https://d27k8xmh3cuzik.cloudfront.net/wp-content/uploads/2018/08/badung-cover-image1.jpg",
-    "http://static.asiawebdirect.com/m/bangkok/portals/indonesia-holidays-com/homepage/lombok-island/pagePropertiesImage/lombok.jpg",
-    "https://jaunttips.com/wp-content/uploads/2020/04/AdobeStock_84849478-scaled.jpeg",
-    "https://img.jakpost.net/c/2017/08/02/2017_08_02_30495_1501654303._large.jpg"
+    {"image": "https://d27k8xmh3cuzik.cloudfront.net/wp-content/uploads/2018/08/badung-cover-image1.jpg"},
+    {
+      "image": "http://static.asiawebdirect.com/m/bangkok/portals/indonesia-holidays-com/homepage/lombok-island/pagePropertiesImage/lombok.jpg"
+    },
+    {
+      "image": "https://jaunttips.com/wp-content/uploads/2020/04/AdobeStock_84849478-scaled.jpeg"
+    },
+    {
+      "image": "https://img.jakpost.net/c/2017/08/02/2017_08_02_30495_1501654303._large.jpg"
+    }
   ],
   "nightIn": [
     {
